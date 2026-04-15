@@ -9,6 +9,26 @@ export const inputRegisters: ModbusRegister[] = [
         validValueMin: -24100,
         validValueMax: 24100,
     }),
+
+    // L1 Current 510
+    // L2 Current 511
+    // L3 Current 512
+
+    ModbusRegister.scale('measure_current.l1', 510, 1, RegisterDataType.UINT16, 0.01, AccessMode.ReadOnly, {
+        validValueMin: 0,
+        validValueMax: 3200,
+    }, [DeviceType.BATTERY]),
+
+    ModbusRegister.scale('measure_current.l2', 511, 1, RegisterDataType.UINT16, 0.01, AccessMode.ReadOnly, {
+        validValueMin: 0,
+        validValueMax: 3200,
+    }, [DeviceType.BATTERY]),
+
+    ModbusRegister.scale('measure_current.l3', 512, 1, RegisterDataType.UINT16, 0.01, AccessMode.ReadOnly, {
+        validValueMin: 0,
+        validValueMax: 3200,
+    }, [DeviceType.BATTERY]),
+
     ModbusRegister.default('measure_power.grid_total_load', 547, 2, RegisterDataType.INT32, AccessMode.ReadOnly, {
         validValueMin: -24100,
         validValueMax: 24100,
