@@ -250,5 +250,8 @@
   },
   "3.2.7": {
     "en": "Better queuing"
+  },
+  "3.2.8": {
+    "en": "Added Battery Current for Afore Battery"
   }
 }
