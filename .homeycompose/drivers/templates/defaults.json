@@ -54,21 +54,21 @@
                 "en": "L1 current",
                 "nl": "L1 stroom"
             },
-            "decimals": 0
+            "decimals": 2
         },
         "measure_current.l2": {
             "title": {
                 "en": "L2 current",
                 "nl": "L2 stroom"
             },
-            "decimals": 0
+            "decimals": 2
         },
         "measure_current.l3": {
             "title": {
                 "en": "L3 current",
                 "nl": "L3 stroom"
             },
-            "decimals": 0
+            "decimals": 2
         },
         "measure_voltage.grid_l1": {
             "title": {
