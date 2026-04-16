@@ -256,5 +256,8 @@
   },
   "3.2.9": {
     "en": "Allow more precision for current"
+  },
+  "3.2.10": {
+    "en": "Better precision for battery current"
   }
 }
