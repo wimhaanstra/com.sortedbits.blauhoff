@@ -253,5 +253,8 @@
   },
   "3.2.8": {
     "en": "Added Battery Current for Afore Battery"
+  },
+  "3.2.9": {
+    "en": "Allow more precision for current"
   }
 }

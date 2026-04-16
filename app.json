@@ -1,7 +1,7 @@
 {
   "_comment": "This file is generated. Please edit .homeycompose/app.json instead.",
   "id": "com.sortedbits.blauhoff",
-  "version": "3.2.8",
+  "version": "3.2.9",
   "compatibility": ">=12.0.0",
   "sdk": 3,
   "platforms": [
@@ -1085,21 +1085,21 @@
             "en": "L1 current",
             "nl": "L1 stroom"
           },
-          "decimals": 0
+          "decimals": 2
         },
         "measure_current.l2": {
           "title": {
             "en": "L2 current",
             "nl": "L2 stroom"
           },
-          "decimals": 0
+          "decimals": 2
         },
         "measure_current.l3": {
           "title": {
             "en": "L3 current",
             "nl": "L3 stroom"
           },
-          "decimals": 0
+          "decimals": 2
         },
         "measure_voltage.grid_l1": {
           "title": {
