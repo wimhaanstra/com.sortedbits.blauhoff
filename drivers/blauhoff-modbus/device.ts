@@ -136,6 +136,10 @@ export class BlauhoffDevice extends Homey.Device {
         await addCapabilityIfNotExists(this, 'readable_boolean.device_status');
         await addCapabilityIfNotExists(this, 'date.record');
 
+        this.device.getAllCapabilities(DeviceType.BATTERY).concat(this.device.getAllCapabilities(DeviceType.SOLAR)).forEach(c => {
+            addCapabilityIfNotExists(this, c);
+        });
+
         const deprecated = this.device.deprecatedCapabilities;
         this.dlog('Deprecated capabilities', deprecated);
         if (deprecated) {
