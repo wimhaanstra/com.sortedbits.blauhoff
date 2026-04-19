@@ -259,5 +259,8 @@
   },
   "3.2.10": {
     "en": "Better precision for battery current"
+  },
+  "3.2.11": {
+    "en": "Resolve crash on missing capability"
   }
 }
