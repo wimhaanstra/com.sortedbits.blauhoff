@@ -344,28 +344,77 @@ export class SolarmanAPI2 implements IAPI2 {
         client.setTimeout(this.connection.timeout * 1000);
 
         return new Promise<Buffer | undefined>((resolve, reject) => {
+            let inbox = Buffer.alloc(0);
+            let settled = false;
+
+            const settle = (fn: () => void) => {
+                if (settled) return;
+                settled = true;
+                fn();
+                try { client.end(); } catch { /* socket may already be closing */ }
+            };
+
+            // Walk the inbox and consume one V5 frame at a time. Unsolicited frames
+            // (e.g. heartbeats with control code 0x4710) are skipped so the actual
+            // response can still arrive within the timeout window.
+            const processInbox = () => {
+                while (!settled && inbox.length >= 13) {
+                    if (inbox[0] !== 0xA5) {
+                        const sync = inbox.indexOf(0xA5);
+                        if (sync === -1) {
+                            inbox = Buffer.alloc(0);
+                            return;
+                        }
+                        inbox = inbox.subarray(sync);
+                        if (inbox.length < 13) return;
+                    }
+
+                    const payloadLength = inbox.readUInt16LE(1);
+                    const totalLength = 13 + payloadLength;
+                    if (inbox.length < totalLength) return;
+
+                    const frame = inbox.subarray(0, totalLength);
+                    inbox = inbox.subarray(totalLength);
+
+                    try {
+                        const wrapped = this.frameDefinition.unwrapResponseFrame(frame);
+                        settle(() => resolve(wrapped.buffer));
+                        return;
+                    } catch (error: any) {
+                        const message = error?.message ?? String(error);
+                        if (message === 'Frame contains incorrect control code.') {
+                            this.log.dlog('Ignoring unsolicited Solarman frame, waiting for response');
+                            continue;
+                        }
+                        this.log.derror('Error parsing response', error);
+                        settle(() => reject(error instanceof Error ? error : new Error(message)));
+                        return;
+                    }
+                }
+            };
+
             client.on('data', (data) => {
+                inbox = inbox.length === 0 ? data : Buffer.concat([inbox, data]);
                 try {
-                    const wrapped = this.frameDefinition.unwrapResponseFrame(data);
-                    resolve(wrapped.buffer);
-                } catch (error) {
-                    this.log.derror('Error parsing response', error);
-                    reject(undefined);
-                } finally {
-                    client.end();
+                    processInbox();
+                } catch (error: any) {
+                    this.log.derror('Unexpected error processing response', error);
+                    settle(() => reject(error instanceof Error ? error : new Error(String(error))));
                 }
             });
 
             client.on('timeout', () => {
                 this.log.derror('Timeout');
-                client.end();
-                reject(undefined);
+                settle(() => reject(new Error('Timeout')));
             });
 
             client.on('error', (error) => {
                 this.log.derror('Error', error);
-                client.end();
-                resolve(undefined);
+                settle(() => resolve(undefined));
+            });
+
+            client.on('close', () => {
+                settle(() => resolve(undefined));
             });
 
             client.connect(this.connection.port, this.connection.host, () => {
