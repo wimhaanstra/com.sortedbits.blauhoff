@@ -262,5 +262,8 @@
   },
   "3.2.11": {
     "en": "Resolve crash on missing capability"
+  },
+  "3.2.12": {
+    "en": "Fix bug crashing app"
   }
 }
