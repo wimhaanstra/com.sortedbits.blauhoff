@@ -19,6 +19,8 @@ import { DeviceType } from '../../repositories/device-repository/models/modbus-r
 import { BlauhoffDriver } from './driver';
 
 const DEFAULT_UNAVAILABLE_TIMEOUT = 180; // 3 minutes of no data marks the device as unavailable
+const READ_REGISTERS_WATCHDOG_MS = 60_000; // outer-bound on a single read cycle so the polling loop never dies
+const RUNNING_REQUEST_WAIT_MS = 30_000; // give up waiting for a previous in-flight read after this long
 
 export class BlauhoffDevice extends Homey.Device {
     private api?: IAPI2;
@@ -521,24 +523,41 @@ export class BlauhoffDevice extends Homey.Device {
             this.dlog('Request already running, waiting for it to finish');
         }
 
+        const waitDeadline = Date.now() + RUNNING_REQUEST_WAIT_MS;
         while (this.runningRequest) {
+            if (Date.now() > waitDeadline) {
+                this.derror('Previous readRegisters never released the lock; forcing reset');
+                this.runningRequest = false;
+                break;
+            }
             await delay(500);
         }
 
         this.runningRequest = true;
 
+        let watchdogHandle: NodeJS.Timeout | undefined;
         try {
-            const results = await this.api.readRegisters();
+            const watchdog = new Promise<never>((_, reject) => {
+                watchdogHandle = setTimeout(
+                    () => reject(new Error('readRegisters watchdog timeout')),
+                    READ_REGISTERS_WATCHDOG_MS,
+                );
+            });
+            const results = await Promise.race([this.api.readRegisters(), watchdog]);
             await this.handleResults(results);
 
             this.dlog(`Updated ${results.length} statusses`);
         } catch (error: Error | any) {
             if (error.name === 'TransactionTimedOutError') {
                 this.dlog('Transaction timed out');
+            } else if (error?.message === 'readRegisters watchdog timeout') {
+                this.derror('readRegisters watchdog fired — re-creating API for the next cycle');
+                this.api = this.getApi();
             } else {
                 this.dlog('Failed to read registers', JSON.stringify(error));
             }
         } finally {
+            if (watchdogHandle) clearTimeout(watchdogHandle);
             this.runningRequest = false;
             this.runningRequestCount--;
 

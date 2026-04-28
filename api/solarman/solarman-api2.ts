@@ -341,17 +341,28 @@ export class SolarmanAPI2 implements IAPI2 {
 
     performRequestQueued = async (request: Buffer): Promise<Buffer | undefined> => {
         const client = new Socket();
-        client.setTimeout(this.connection.timeout * 1000);
+        const timeoutMs = this.connection.timeout;
+        client.setTimeout(timeoutMs);
 
         return new Promise<Buffer | undefined>((resolve, reject) => {
             let inbox = Buffer.alloc(0);
             let settled = false;
+            let heartbeatsSkipped = 0;
+            const HEARTBEAT_SKIP_LIMIT = 32;
+
+            // Absolute deadline: independent of socket activity, so a steady stream
+            // of unsolicited heartbeats can never keep the request alive forever.
+            const deadline = setTimeout(() => {
+                this.log.derror(`Request deadline exceeded after ${timeoutMs}ms`);
+                settle(() => reject(new Error('Request deadline exceeded')));
+            }, timeoutMs);
 
             const settle = (fn: () => void) => {
                 if (settled) return;
                 settled = true;
+                clearTimeout(deadline);
                 fn();
-                try { client.end(); } catch { /* socket may already be closing */ }
+                try { client.destroy(); } catch { /* socket may already be closing */ }
             };
 
             // Walk the inbox and consume one V5 frame at a time. Unsolicited frames
@@ -383,6 +394,12 @@ export class SolarmanAPI2 implements IAPI2 {
                     } catch (error: any) {
                         const message = error?.message ?? String(error);
                         if (message === 'Frame contains incorrect control code.') {
+                            heartbeatsSkipped++;
+                            if (heartbeatsSkipped > HEARTBEAT_SKIP_LIMIT) {
+                                this.log.derror(`Heartbeat skip limit reached (${HEARTBEAT_SKIP_LIMIT}); the data logger is online but the inverter is not responding`);
+                                settle(() => reject(new Error('Heartbeat skip limit reached')));
+                                return;
+                            }
                             this.log.dlog('Ignoring unsolicited Solarman frame, waiting for response');
                             continue;
                         }
@@ -404,7 +421,7 @@ export class SolarmanAPI2 implements IAPI2 {
             });
 
             client.on('timeout', () => {
-                this.log.derror('Timeout');
+                this.log.derror('Socket inactivity timeout');
                 settle(() => reject(new Error('Timeout')));
             });
 
