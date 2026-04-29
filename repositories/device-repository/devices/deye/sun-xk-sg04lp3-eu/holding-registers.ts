@@ -145,7 +145,8 @@ export const holdingRegisters: ModbusRegister[] = [
 
     // inverter
     ModbusRegister.default('measure_power.inverter', 636, 1, RegisterDataType.INT16),
-    ModbusRegister.scale('measure_temperature.ac', 541, 1, RegisterDataType.UINT16, 0.01),
+    // Deye/Sunsynk temperature encoding: raw is tenths of °C with a +1000 offset (1000 == 0°C).
+    ModbusRegister.transform('measure_temperature.ac', 541, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1),
 
     // battery
     ModbusRegister.default('measure_power.battery1', 590, 1, RegisterDataType.INT16, undefined, undefined, [DeviceType.BATTERY])
@@ -165,8 +166,8 @@ export const holdingRegisters: ModbusRegister[] = [
     ModbusRegister.default('measure_percentage.battery1', 588, 1, RegisterDataType.UINT16, undefined, undefined, [DeviceType.BATTERY])
         .addDefault('measure_battery'), // SOC
 
-    ModbusRegister.scale('measure_temperature.battery1', 586, 1, RegisterDataType.UINT16, 0.01, undefined, undefined, [DeviceType.BATTERY]),
-    ModbusRegister.scale('measure_temperature.dc', 540, 1, RegisterDataType.UINT16, 0.01, undefined, undefined, [DeviceType.BATTERY]),
+    ModbusRegister.transform('measure_temperature.battery1', 586, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1, undefined, undefined, [DeviceType.BATTERY]),
+    ModbusRegister.transform('measure_temperature.dc', 540, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1, undefined, undefined, [DeviceType.BATTERY]),
 
     // load
     ModbusRegister.default('measure_power.load', 653, 1, RegisterDataType.INT16),
