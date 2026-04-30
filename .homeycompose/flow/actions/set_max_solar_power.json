@@ -14,7 +14,7 @@
         },
         {
             "type": "range",
-            "min": 1000,
+            "min": 0,
             "max": 7800,
             "step": 10,
             "name": "value",

@@ -63,7 +63,7 @@ export class DeyeSunXKSG04LP3 extends ModbusDevice {
 
         origin.dlog('Setting max solar power to: ', value);
 
-        if (value < 1000 || value > 7800) {
+        if (value < 0 || value > 7800) {
             origin.derror('Value out of range');
             return;
         }
