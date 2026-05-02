@@ -13,12 +13,16 @@ BlauHoff Afore AF XK-TH Three Phase Hybrid Inverter Series
 | 557| 1| UINT16| W| -| No| measure_power.pv1| PV 1 power| 0 - 15000| Inverter |
 | 558| 1| UINT16| V| 0.1| No| measure_voltage.pv2| PV 2 voltage| 0 - 800| Inverter |
 | 560| 1| UINT16| W| -| No| measure_power.pv2| PV 2 power| 0 - 15000| Inverter |
+| 1026| 2| UINT32| kWh| 0.1| No| meter_power| Energy| -| Inverter |
 | 2500| 1| UINT16| | -| No| status_code.running_state| undefined| -| Inverter |
 ### Input Registers Battery
 | Address | Length | Data Type | Unit | Scale | Tranformation | Capability ID | Capability name | Range | DeviceTypes |
 | ------- | ------ | --------- | ---- | ----- | ------------- | ------------- | --------------- | ----- | ----------- |
 | 0| 6| STRING| | -| No| status_text.inverter_name| Inverter name| -| Battery, Inverter |
 | 11| 4| STRING| | -| No| status_text.hard_name| Hard name| -| Battery, Inverter |
+| 510| 1| INT16| A| 0.01| No| measure_current.l1| L1 current| -4000 - 4000| Battery |
+| 511| 1| INT16| A| 0.01| No| measure_current.l2| L2 current| -4000 - 4000| Battery |
+| 512| 1| INT16| A| 0.01| No| measure_current.l3| L3 current| -4000 - 4000| Battery |
 | 2000| 1| UINT16| | -| Yes| status_text.battery_state| Battery state| -| Battery |
 | 2001| 1| INT16| °C| 0.1| No| measure_temperature.battery1| Battery 1 temperature| -40 - 100| Battery |
 | 2002| 1| UINT16| %| -| No| measure_percentage.bat_soc| Battery SOC| 0 - 100| Battery |

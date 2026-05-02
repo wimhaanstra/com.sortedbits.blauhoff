@@ -42,20 +42,20 @@ export const inputRegisters: ModbusRegister[] = [
     ModbusRegister.scale('measure_voltage.pv1', 555, 1, RegisterDataType.UINT16, 0.1, AccessMode.ReadOnly, {
         validValueMin: 0,
         validValueMax: 800,
-    }),
+    }, [DeviceType.SOLAR]),
 
     ModbusRegister.default('measure_power.pv1', 557, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, {
         validValueMin: 0,
         validValueMax: 15000,
-    }),
+    }, [DeviceType.SOLAR]),
     ModbusRegister.scale('measure_voltage.pv2', 558, 1, RegisterDataType.UINT16, 0.1, AccessMode.ReadOnly, {
         validValueMin: 0,
         validValueMax: 800,
-    }),
+    }, [DeviceType.SOLAR]),
     ModbusRegister.default('measure_power.pv2', 560, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, {
         validValueMin: 0,
         validValueMax: 15000,
-    }),
+    }, [DeviceType.SOLAR]),
 
     ModbusRegister.scale('meter_power', 1026, 2, RegisterDataType.UINT32, 0.1, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
 

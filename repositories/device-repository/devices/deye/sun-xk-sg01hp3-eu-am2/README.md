@@ -54,8 +54,9 @@ BlauHoff Deye Sun *K SG01HP3 EU AM2 Series
 | 526| 1| UINT16| kWh| 0.1| No| meter_power.daily_to_load| Daily to load| -| Inverter |
 | 527| 1| UINT16| kWh| 0.1| No| meter_power.total_to_load| Total to load| -| Inverter |
 | 529| 1| UINT16| kWh| 0.1| No| meter_power.daily_pv| Daily PV| -| Inverter |
-| 534| 2| UINT16| kWh| 0.1| No| meter_power.total_pv| Total PV| -| Inverter |
-| 541| 1| UINT16| °C| 0.01| No| measure_temperature.ac| AC temperature| -| Inverter |
+| 534| 1| UINT16| kWh| 0.1| No| meter_power.total_pv| Total PV| -| Inverter |
+| 534| 1| UINT16| kWh| 0.1| No| meter_power| Energy| -| Inverter |
+| 541| 1| UINT16| °C| -| Yes| measure_temperature.ac| AC temperature| -| Inverter |
 | 598| 1| UINT16| V| 0.1| No| measure_voltage.grid_l1| Grid L1 voltage| -| Inverter |
 | 599| 1| UINT16| V| 0.1| No| measure_voltage.grid_l2| Grid L2 voltage| -| Inverter |
 | 600| 1| UINT16| V| 0.1| No| measure_voltage.grid_l3| Grid L3 voltage| -| Inverter |
@@ -72,8 +73,8 @@ BlauHoff Deye Sun *K SG01HP3 EU AM2 Series
 | 515| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_discharge| Daily battery discharge| -| Battery |
 | 516| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_charge| Total battery charge| -| Battery |
 | 518| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_discharge| Total battery discharge| -| Battery |
-| 540| 1| UINT16| °C| 0.01| No| measure_temperature.dc| DC temperature| -| Battery |
-| 586| 1| UINT16| °C| 0.01| No| measure_temperature.battery1| Battery 1 temperature| -| Battery |
+| 540| 1| UINT16| °C| -| Yes| measure_temperature.dc| DC temperature| -| Battery |
+| 586| 1| UINT16| °C| -| Yes| measure_temperature.battery1| Battery 1 temperature| -| Battery |
 | 587| 1| INT16| V| 0.1| No| measure_voltage.battery1| Battery 1 voltage| -| Battery |
 | 588| 1| UINT16| %| -| No| measure_percentage.battery1| undefined| -| Battery |
 | 588| 1| UINT16| | -| No| measure_battery| undefined| -| Battery |

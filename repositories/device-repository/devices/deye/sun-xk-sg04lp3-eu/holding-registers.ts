@@ -133,18 +133,18 @@ export const holdingRegisters: ModbusRegister[] = [
     ModbusRegister.scale('meter_power.total_battery_discharge', 518, 1, RegisterDataType.UINT16, 0.1, undefined, undefined, [DeviceType.BATTERY]), // day batt charge
 
     // pv
-    ModbusRegister.default('measure_power.pv1', 672, 1, RegisterDataType.UINT16),
-    ModbusRegister.default('measure_power.pv2', 673, 1, RegisterDataType.UINT16),
+    ModbusRegister.default('measure_power.pv1', 672, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
+    ModbusRegister.default('measure_power.pv2', 673, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
 
     // grid
-    ModbusRegister.default('measure_power.grid', 625, 1, RegisterDataType.UINT16),
+    ModbusRegister.default('measure_power.grid', 625, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
 
-    ModbusRegister.scale('measure_voltage.grid_l1', 598, 1, RegisterDataType.UINT16, 0.1),
-    ModbusRegister.scale('measure_voltage.grid_l2', 599, 1, RegisterDataType.UINT16, 0.1),
-    ModbusRegister.scale('measure_voltage.grid_l3', 600, 1, RegisterDataType.UINT16, 0.1),
+    ModbusRegister.scale('measure_voltage.grid_l1', 598, 1, RegisterDataType.UINT16, 0.1, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
+    ModbusRegister.scale('measure_voltage.grid_l2', 599, 1, RegisterDataType.UINT16, 0.1, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
+    ModbusRegister.scale('measure_voltage.grid_l3', 600, 1, RegisterDataType.UINT16, 0.1, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR]),
 
     // inverter
-    ModbusRegister.default('measure_power.inverter', 636, 1, RegisterDataType.INT16),
+    ModbusRegister.default('measure_power.inverter', 636, 1, RegisterDataType.INT16, AccessMode.ReadOnly, undefined, [DeviceType.SOLAR] ),
     // Deye/Sunsynk temperature encoding: raw is tenths of °C with a +1000 offset (1000 == 0°C).
     ModbusRegister.transform('measure_temperature.ac', 541, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1),
 

@@ -47,10 +47,6 @@ BlauHoff Deye Sun *K SG04LP3 EU Series
 | 191| 1| UINT16| | -| No| status_code.grid_peak_shaving_power| undefined| -| Inverter |
 | 340| 1| UINT16| | -| No| status_code.max_solar_power| undefined| -| Inverter |
 | 500| 1| UINT16| | -| Yes| status_text.run_mode| Run mode| -| Inverter |
-| 514| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_charge| Daily battery charge| -| Inverter |
-| 515| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_discharge| Daily battery discharge| -| Inverter |
-| 516| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_charge| Total battery charge| -| Inverter |
-| 518| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_discharge| Total battery discharge| -| Inverter |
 | 520| 1| UINT16| kWh| 0.1| No| meter_power.daily_from_grid| Daily from grid| -| Inverter |
 | 521| 1| UINT16| kWh| 0.1| No| meter_power.daily_to_grid| Daily to grid| -| Inverter |
 | 522| 1| UINT16| kWh| 0.1| No| meter_power.total_from_grid| Total from grid| -| Inverter |
@@ -59,14 +55,7 @@ BlauHoff Deye Sun *K SG04LP3 EU Series
 | 527| 1| UINT16| kWh| 0.1| No| meter_power.total_to_load| Total to load| -| Inverter |
 | 529| 1| UINT16| kWh| 0.1| No| meter_power.daily_pv| Daily PV| -| Inverter |
 | 534| 2| UINT16| kWh| 0.1| No| meter_power.total_pv| Total PV| -| Inverter |
-| 540| 1| UINT16| °C| 0.01| No| measure_temperature.dc| DC temperature| -| Inverter |
-| 541| 1| UINT16| °C| 0.01| No| measure_temperature.ac| AC temperature| -| Inverter |
-| 586| 1| UINT16| °C| 0.01| No| measure_temperature.battery1| Battery 1 temperature| -| Inverter |
-| 587| 1| INT16| V| 0.1| No| measure_voltage.battery1| Battery 1 voltage| -| Inverter |
-| 588| 1| UINT16| %| -| No| measure_percentage.battery1| undefined| -| Inverter |
-| 590| 1| INT16| W| -| No| measure_power.battery1| Battery 1 power| -| Inverter |
-| 590| 1| INT16| W| -| Yes| measure_power| Power| -| Inverter |
-| 591| 1| INT16| A| 0.01| No| measure_current.battery1| Battery 1 current| -| Inverter |
+| 541| 1| UINT16| °C| -| Yes| measure_temperature.ac| AC temperature| -| Inverter |
 | 598| 1| UINT16| V| 0.1| No| measure_voltage.grid_l1| Grid L1 voltage| -| Inverter |
 | 599| 1| UINT16| V| 0.1| No| measure_voltage.grid_l2| Grid L2 voltage| -| Inverter |
 | 600| 1| UINT16| V| 0.1| No| measure_voltage.grid_l3| Grid L3 voltage| -| Inverter |
@@ -76,6 +65,21 @@ BlauHoff Deye Sun *K SG04LP3 EU Series
 | 653| 1| INT16| W| -| No| measure_power.load| Load power| -| Inverter |
 | 672| 1| UINT16| W| -| No| measure_power.pv1| PV 1 power| -| Inverter |
 | 673| 1| UINT16| W| -| No| measure_power.pv2| PV 2 power| -| Inverter |
+### Holding Registers Battery
+| Address | Length | Data Type | Unit | Scale | Tranformation | Capability ID | Capability name | Range | DeviceTypes |
+| ------- | ------ | --------- | ---- | ----- | ------------- | ------------- | --------------- | ----- | ----------- |
+| 514| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_charge| Daily battery charge| -| Battery |
+| 515| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_discharge| Daily battery discharge| -| Battery |
+| 516| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_charge| Total battery charge| -| Battery |
+| 518| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_discharge| Total battery discharge| -| Battery |
+| 540| 1| UINT16| °C| -| Yes| measure_temperature.dc| DC temperature| -| Battery |
+| 586| 1| UINT16| °C| -| Yes| measure_temperature.battery1| Battery 1 temperature| -| Battery |
+| 587| 1| INT16| V| 0.1| No| measure_voltage.battery1| Battery 1 voltage| -| Battery |
+| 588| 1| UINT16| %| -| No| measure_percentage.battery1| undefined| -| Battery |
+| 588| 1| UINT16| | -| No| measure_battery| undefined| -| Battery |
+| 590| 1| INT16| W| -| No| measure_power.battery1| Battery 1 power| -| Battery |
+| 590| 1| INT16| W| -| Yes| measure_power| Power| -| Battery |
+| 591| 1| INT16| A| 0.01| No| measure_current.battery1| Battery 1 current| -| Battery |
 
 ### Supported flow actions
 
