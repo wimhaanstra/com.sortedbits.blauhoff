@@ -13,24 +13,12 @@ BlauHoff Deye Sun *K SG04LP3 EU Series
 | 143| 1| UINT16| | -| No| status_code.max_sell_power| Max selling power| -| Inverter |
 | 145| 1| UINT16| | -| Yes| status_text.sell_solar| Sell solar| -| Inverter |
 | 146| 1| UINT16| | -| Yes| status_text.time_of_use| Time of use| -| Inverter |
-| 148| 1| UINT16| | -| Yes| status_text.tou_time1| ToU Time 1| -| Inverter |
-| 149| 1| UINT16| | -| Yes| status_text.tou_time2| ToU Time 2| -| Inverter |
-| 150| 1| UINT16| | -| Yes| status_text.tou_time3| ToU Time 3| -| Inverter |
-| 151| 1| UINT16| | -| Yes| status_text.tou_time4| ToU Time 4| -| Inverter |
-| 152| 1| UINT16| | -| Yes| status_text.tou_time5| ToU Time 5| -| Inverter |
-| 153| 1| UINT16| | -| Yes| status_text.tou_time6| ToU Time 6| -| Inverter |
 | 154| 1| UINT16| W| -| No| measure_power.powerlimit1| Power limit 1| -| Inverter |
 | 155| 1| UINT16| W| -| No| measure_power.powerlimit2| Power limit 2| -| Inverter |
 | 156| 1| UINT16| W| -| No| measure_power.powerlimit3| Power limit 3| -| Inverter |
 | 157| 1| UINT16| W| -| No| measure_power.powerlimit4| Power limit 4| -| Inverter |
 | 158| 1| UINT16| W| -| No| measure_power.powerlimit5| Power limit 5| -| Inverter |
 | 159| 1| UINT16| W| -| No| measure_power.powerlimit6| Power limit 6| -| Inverter |
-| 166| 1| UINT16| %| -| No| measure_percentage.tou_battery1| ToU Battery 1| -| Inverter |
-| 167| 1| UINT16| %| -| No| measure_percentage.tou_battery2| ToU Battery 2| -| Inverter |
-| 168| 1| UINT16| %| -| No| measure_percentage.tou_battery3| ToU Battery 3| -| Inverter |
-| 169| 1| UINT16| %| -| No| measure_percentage.tou_battery4| ToU Battery 4| -| Inverter |
-| 170| 1| UINT16| %| -| No| measure_percentage.tou_battery5| ToU Battery 5| -| Inverter |
-| 171| 1| UINT16| %| -| No| measure_percentage.tou_battery6| ToU Battery 6| -| Inverter |
 | 172| 1| UINT16| | -| Yes| status_text.grid_charging1| Grid charging 1| -| Inverter |
 | 172| 1| UINT16| | -| Yes| status_text.generator_charging1| Generator charging 1| -| Inverter |
 | 173| 1| UINT16| | -| Yes| status_text.grid_charging2| Grid charging 2| -| Inverter |
@@ -68,6 +56,18 @@ BlauHoff Deye Sun *K SG04LP3 EU Series
 ### Holding Registers Battery
 | Address | Length | Data Type | Unit | Scale | Tranformation | Capability ID | Capability name | Range | DeviceTypes |
 | ------- | ------ | --------- | ---- | ----- | ------------- | ------------- | --------------- | ----- | ----------- |
+| 148| 1| UINT16| | -| Yes| status_text.tou_time1| ToU Time 1| -| Battery |
+| 149| 1| UINT16| | -| Yes| status_text.tou_time2| ToU Time 2| -| Battery |
+| 150| 1| UINT16| | -| Yes| status_text.tou_time3| ToU Time 3| -| Battery |
+| 151| 1| UINT16| | -| Yes| status_text.tou_time4| ToU Time 4| -| Battery |
+| 152| 1| UINT16| | -| Yes| status_text.tou_time5| ToU Time 5| -| Battery |
+| 153| 1| UINT16| | -| Yes| status_text.tou_time6| ToU Time 6| -| Battery |
+| 166| 1| UINT16| %| -| No| measure_percentage.tou_battery1| ToU Battery 1| -| Battery |
+| 167| 1| UINT16| %| -| No| measure_percentage.tou_battery2| ToU Battery 2| -| Battery |
+| 168| 1| UINT16| %| -| No| measure_percentage.tou_battery3| ToU Battery 3| -| Battery |
+| 169| 1| UINT16| %| -| No| measure_percentage.tou_battery4| ToU Battery 4| -| Battery |
+| 170| 1| UINT16| %| -| No| measure_percentage.tou_battery5| ToU Battery 5| -| Battery |
+| 171| 1| UINT16| %| -| No| measure_percentage.tou_battery6| ToU Battery 6| -| Battery |
 | 514| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_charge| Daily battery charge| -| Battery |
 | 515| 1| UINT16| kWh| 0.1| No| meter_power.daily_battery_discharge| Daily battery discharge| -| Battery |
 | 516| 1| UINT16| kWh| 0.1| No| meter_power.total_battery_charge| Total battery charge| -| Battery |
