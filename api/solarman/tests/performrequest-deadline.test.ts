@@ -1,5 +1,7 @@
 import { createServer, Socket as NetSocket } from 'net';
 import { Logger } from '../../../helpers/log';
+import { DeviceRepository } from '../../../repositories/device-repository/device-repository';
+import { createRegisterBatches } from '../../../repositories/device-repository/helpers/register-batches';
 import { SolarmanAPI2 } from '../solarman-api2';
 
 const SERIAL = '1234567890';
@@ -65,6 +67,30 @@ const startHeartbeatOnlyServer = async (): Promise<FakeServer> => {
 };
 
 describe('SolarmanAPI2 — heartbeat handling does not block forever', () => {
+    test('readBatch requests the exact contiguous register count', async () => {
+        const api = new SolarmanAPI2(DEVICE_ID, {
+            host: '127.0.0.1',
+            port: 8899,
+            unitId: 1,
+            timeout: 250,
+            serial: SERIAL,
+        }, new Logger());
+        const device = DeviceRepository.getInstance().getDeviceById(DEVICE_ID)!;
+        const batch = createRegisterBatches(new Logger(), device.holdingRegisters)
+            .find((registers) => registers.some((register) => register.address === 540))!;
+
+        (api as any).performRequest = jest.fn(async (request: Buffer) => {
+            expect(request.readUInt16BE(2)).toBe(540);
+            expect(request.readUInt16BE(4)).toBe(2);
+            return Buffer.from([0x01, 0x03, 0x04, 0x05, 0xbe, 0x05, 0xbd]);
+        });
+
+        const results = await api.readBatch(batch);
+
+        expect(results.map((result) => result.register.address)).toEqual([540, 541]);
+        expect((api as any).performRequest).toHaveBeenCalledTimes(1);
+    });
+
     test('performRequestQueued rejects within timeout when only heartbeat frames arrive', async () => {
         const server = await startHeartbeatOnlyServer();
 

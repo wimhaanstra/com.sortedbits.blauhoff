@@ -1,7 +1,7 @@
 import { Logger } from '../../../../../helpers/log';
 import { DeviceRepository } from '../../../device-repository';
 import { ModbusDevice } from '../../../models/modbus-device';
-import { ModbusRegister } from '../../../models/modbus-register';
+import { DeviceType, ModbusRegister } from '../../../models/modbus-register';
 
 const log = new Logger();
 
@@ -35,6 +35,19 @@ describe.each([
     ['sun-xk-sg01hp3-eu-am2', 'Deye Sun *K SG01HP3 EU AM2'],
 ])('%s temperature registers apply offset-1000 encoding', (deviceId) => {
     const device = DeviceRepository.getInstance().getDeviceById(deviceId)!;
+
+    test('DC temperature is an inverter diagnostic and battery temperature stays on the battery device', () => {
+        const solarRegisterAddresses = device.getHoldingRegisters(DeviceType.SOLAR).map((register) => register.address);
+        const batteryRegisterAddresses = device.getHoldingRegisters(DeviceType.BATTERY).map((register) => register.address);
+
+        expect(solarRegisterAddresses).toContain(540);
+        expect(batteryRegisterAddresses).not.toContain(540);
+        expect(batteryRegisterAddresses).toContain(586);
+
+        expect(device.getAllCapabilities(DeviceType.SOLAR)).toContain('measure_temperature.dc');
+        expect(device.getAllCapabilities(DeviceType.BATTERY)).not.toContain('measure_temperature.dc');
+        expect(device.getAllCapabilities(DeviceType.BATTERY)).toContain('measure_temperature.battery1');
+    });
 
     test.each(calibration)(
         'AC temperature (541): raw $raw → $expected °C',

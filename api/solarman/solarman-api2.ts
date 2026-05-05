@@ -269,7 +269,7 @@ export class SolarmanAPI2 implements IAPI2 {
         const firstRegister = batch[0];
         const lastRegister = batch[batch.length - 1];
 
-        const length = lastRegister.address + lastRegister.length - firstRegister.address + 1;
+        const length = lastRegister.address + lastRegister.length - firstRegister.address;
 
         const result: Array<RegisterOutput> = [];
 

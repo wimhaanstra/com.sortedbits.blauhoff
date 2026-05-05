@@ -167,7 +167,7 @@ export const holdingRegisters: ModbusRegister[] = [
         .addDefault('measure_battery'), // SOC
 
     ModbusRegister.transform('measure_temperature.battery1', 586, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1, undefined, undefined, [DeviceType.BATTERY]),
-    ModbusRegister.transform('measure_temperature.dc', 540, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1, undefined, undefined, [DeviceType.BATTERY]),
+    ModbusRegister.transform('measure_temperature.dc', 540, 1, RegisterDataType.UINT16, (value) => (Number(value) - 1000) * 0.1, undefined, undefined, [DeviceType.SOLAR]),
 
     // load
     ModbusRegister.default('measure_power.load', 653, 1, RegisterDataType.INT16),
