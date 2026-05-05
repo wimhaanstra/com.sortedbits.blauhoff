@@ -277,5 +277,8 @@
   },
   "3.2.16": {
     "en": "Experimental temperature fix"
+  },
+  "3.2.17": {
+    "en": "Sometimes the status text is a number"
   }
 }
