@@ -274,5 +274,8 @@
   },
   "3.2.15": {
     "en": "Set max solar power minimum to 0, as a test"
+  },
+  "3.2.16": {
+    "en": "Experimental temperature fix"
   }
 }
