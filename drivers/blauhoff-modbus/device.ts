@@ -10,6 +10,7 @@ import { addCapabilityIfNotExists, capabilityChange, deprecateCapability } from 
 
 import { DateTime } from 'luxon';
 import { IAPI2, RegisterOutput } from '../../api/iapi';
+import { normalizeCapabilityValue } from '../../helpers/capability-value';
 import { ModbusAPI2 } from '../../api/modbus/modbus-api2';
 import { SolarmanAPI2 } from '../../api/solarman/solarman-api2';
 import { delay } from '../../helpers/delay';
@@ -194,11 +195,12 @@ export class BlauhoffDevice extends Homey.Device {
                 }
 
                 delete this.isInInvalidState[parseConfiguration.capabilityId];
-                await capabilityChange(this, parseConfiguration.capabilityId, result);
+                const capabilityValue = normalizeCapabilityValue(parseConfiguration.capabilityId, result);
+                await capabilityChange(this, parseConfiguration.capabilityId, capabilityValue);
 
-                this.lastState[parseConfiguration.capabilityId] = result;
+                this.lastState[parseConfiguration.capabilityId] = capabilityValue;
 
-                parseConfiguration.currentValue = result;
+                parseConfiguration.currentValue = capabilityValue;
 
                 if (!this.reachable) {
                     this.reachable = true;
@@ -209,7 +211,8 @@ export class BlauhoffDevice extends Homey.Device {
                 if (dependendantStateCalculations.length > 0) {
                     for (const calc of dependendantStateCalculations) {
                         const result = await calc.calculation(this, this.lastState);
-                        await capabilityChange(this, calc.capabilityId, result);
+                        const capabilityValue = normalizeCapabilityValue(calc.capabilityId, result);
+                        await capabilityChange(this, calc.capabilityId, capabilityValue);
                     }
                 }
             }
