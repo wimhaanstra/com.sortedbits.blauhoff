@@ -266,31 +266,31 @@ export const holdingRegisters: ModbusRegister[] = [
     /*
      * Minimum battery percentage for this timeslot
      */
-    ModbusRegister.default('measure_percentage.tou_battery1', 166, 1, RegisterDataType.UINT16), //, AccessMode.WriteOnly),
-    ModbusRegister.default('measure_percentage.tou_battery2', 167, 1, RegisterDataType.UINT16), //, AccessMode.WriteOnly),
-    ModbusRegister.default('measure_percentage.tou_battery3', 168, 1, RegisterDataType.UINT16), //, AccessMode.WriteOnly),
-    ModbusRegister.default('measure_percentage.tou_battery4', 169, 1, RegisterDataType.UINT16), //, AccessMode.WriteOnly),
-    ModbusRegister.default('measure_percentage.tou_battery5', 170, 1, RegisterDataType.UINT16), //, AccessMode.WriteOnly),
-    ModbusRegister.default('measure_percentage.tou_battery6', 171, 1, RegisterDataType.UINT16), //, AccessMode.WriteOnly),
+    ModbusRegister.default('measure_percentage.tou_battery1', 166, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY]), //, AccessMode.WriteOnly),
+    ModbusRegister.default('measure_percentage.tou_battery2', 167, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY]), //, AccessMode.WriteOnly),
+    ModbusRegister.default('measure_percentage.tou_battery3', 168, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY]), //, AccessMode.WriteOnly),
+    ModbusRegister.default('measure_percentage.tou_battery4', 169, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY]), //, AccessMode.WriteOnly),
+    ModbusRegister.default('measure_percentage.tou_battery5', 170, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY]), //, AccessMode.WriteOnly),
+    ModbusRegister.default('measure_percentage.tou_battery6', 171, 1, RegisterDataType.UINT16, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY]), //, AccessMode.WriteOnly),
     /*
      * Time for this timeslot
      */
     ModbusRegister.transform('status_text.tou_time1', 148, 1, RegisterDataType.UINT16, (value, buffer, log) => {
         return valueToTime(value);
-    }),
+    }, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY] ),
     ModbusRegister.transform('status_text.tou_time2', 149, 1, RegisterDataType.UINT16, (value, buffer, log) => {
         return valueToTime(value);
-    }),
+    }, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY] ),
     ModbusRegister.transform('status_text.tou_time3', 150, 1, RegisterDataType.UINT16, (value, buffer, log) => {
         return valueToTime(value);
-    }),
+    }, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY] ),
     ModbusRegister.transform('status_text.tou_time4', 151, 1, RegisterDataType.UINT16, (value, buffer, log) => {
         return valueToTime(value);
-    }),
+    }, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY] ),
     ModbusRegister.transform('status_text.tou_time5', 152, 1, RegisterDataType.UINT16, (value, buffer, log) => {
         return valueToTime(value);
-    }),
+    }, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY] ),
     ModbusRegister.transform('status_text.tou_time6', 153, 1, RegisterDataType.UINT16, (value, buffer, log) => {
         return valueToTime(value);
-    }),
+    }, AccessMode.ReadOnly, undefined, [DeviceType.BATTERY] ),
 ];
