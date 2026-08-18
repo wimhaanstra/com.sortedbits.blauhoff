@@ -1,12 +1,11 @@
 {
     "pair": {
-        "title": "BlauHoff Cloud",
-        "intro": "BlauHoff Cloud is a cloud service for BlauHoff devices. It provides a secure and reliable way to store your data.",
-        "linktext": "Click here to request your cloud details",
-        "accessId": "Access ID",
-        "accessSecret": "Access Secret",
-        "serial": "Serial number",
-        "submit": "Submit"
+        "title": "Smart Energy PLAT",
+        "intro": "Sign in with the same account and password you use in the Smart Energy PLAT app. Homey will then list the battery packs linked to that account so you can add one or more.",
+        "linktext": "Use your CFE Smart Energy PLAT cloud account.",
+        "account": "Account",
+        "password": "Password",
+        "submit": "Connect"
     },
     "modbus_pair": {
         "title": "Connect to Modbus",

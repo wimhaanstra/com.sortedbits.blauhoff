@@ -1,0 +1,56 @@
+[
+    {
+        "id": "account",
+        "type": "text",
+        "label": {
+            "en": "Account",
+            "nl": "Account"
+        },
+        "value": "",
+        "hint": {
+            "en": "The same account you use in the Smart Energy PLAT app",
+            "nl": "Hetzelfde account als in de Smart Energy PLAT-app"
+        }
+    },
+    {
+        "id": "password",
+        "type": "password",
+        "label": {
+            "en": "Password",
+            "nl": "Wachtwoord"
+        },
+        "value": "",
+        "hint": {
+            "en": "The password for your Smart Energy PLAT account",
+            "nl": "Het wachtwoord van je Smart Energy PLAT-account"
+        }
+    },
+    {
+        "id": "refreshInterval",
+        "type": "number",
+        "label": {
+            "en": "Update interval",
+            "nl": "Update interval"
+        },
+        "min": 10,
+        "value": 30,
+        "max": 600,
+        "hint": {
+            "en": "Time in seconds used to query cloud battery details",
+            "nl": "Tijd in seconden om cloudbatterijgegevens op te halen"
+        }
+    },
+    {
+        "id": "enabled",
+        "type": "checkbox",
+        "label": {
+            "en": "This device is enabled",
+            "nl": "Dit apparaat is ingeschakeld"
+        },
+        "value": true,
+        "hint": {
+            "en": "When disabled, the device will not be queried.",
+            "nl": "Indien uitgeschakeld wordt het apparaat niet bevraagd."
+        }
+    }
+]

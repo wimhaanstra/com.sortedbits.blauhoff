@@ -1,12 +1,10 @@
 {
     "pair": {
-        "title": "BlauHoff Cloud",
-        "intro": "BlauHoff Cloud is a cloud service for BlauHoff devices. It provides a secure and reliable way to access your device data.",
-        "linktext": "Click here to request your cloud details",
-        "accessId": "Access ID",
-        "accessSecret": "Access Secret",
-        "serial": "Serial number",
-        "serialIntro": "The serial number of your device can be found on the back of the device. If you already registered your serial number, you can leave this field empty",
-        "submit": "Submit"
+        "title": "Smart Energy PLAT",
+        "intro": "Meld je aan met hetzelfde account en wachtwoord als in de Smart Energy PLAT-app. Homey toont daarna de batterijpacks op dat account, zodat je er een of meer kunt toevoegen.",
+        "linktext": "Gebruik je CFE Smart Energy PLAT-cloudaccount.",
+        "account": "Account",
+        "password": "Wachtwoord",
+        "submit": "Verbinden"
     }
 }

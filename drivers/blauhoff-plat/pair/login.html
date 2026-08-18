@@ -1,0 +1,61 @@
+<script type="application/javascript">
+    function submitForm() {
+        var button = document.getElementById('submit-button');
+        button.classList.add('is-loading');
+
+        var data = {
+            account: document.getElementById('account').value,
+            password: document.getElementById('password').value,
+        };
+
+        Homey.emit('plat_login', data).then(function (result) {
+            button.classList.remove('is-loading');
+
+            if (!result || !result.success) {
+                Homey.alert(result && result.message ? result.message : 'Failed to sign in');
+            } else {
+                Homey.showView('list_devices');
+            }
+        }).catch(function (error) {
+            button.classList.remove('is-loading');
+            Homey.alert(error && error.message ? error.message : 'Failed to sign in');
+        });
+    }
+</script>
+
+<style>
+    .homey-form {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+
+    .intro {
+        color: rgb(147, 147, 154);
+    }
+</style>
+
+<form class="homey-form">
+    <fieldset class="homey-form-fieldset">
+        <legend class="homey-form-legend" data-i18n="pair.title"></legend>
+
+        <div class="homey-form-group intro" data-i18n="pair.intro"></div>
+
+        <div class="homey-form-group">
+            <span data-i18n="pair.linktext"></span>
+        </div>
+
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="account" data-i18n="pair.account"></label>
+            <input class="homey-form-input" id="account" type="text" autocomplete="username" />
+        </div>
+
+        <div class="homey-form-group">
+            <label class="homey-form-label" for="password" data-i18n="pair.password"></label>
+            <input class="homey-form-input" id="password" type="password" autocomplete="current-password" />
+        </div>
+    </fieldset>
+
+    <button id="submit-button" type="button" onclick="submitForm()" class="homey-button-primary-full" data-i18n="pair.submit"></button>
+</form>

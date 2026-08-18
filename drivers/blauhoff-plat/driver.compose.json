@@ -1,0 +1,322 @@
+{
+    "name": {
+        "en": "Smart Energy PLAT battery",
+        "nl": "Smart Energy PLAT batterij"
+    },
+    "class": "battery",
+    "energy": {
+        "homeBattery": true
+    },
+    "platforms": [
+        "local"
+    ],
+    "connectivity": [
+        "cloud"
+    ],
+    "images": {
+        "small": "{{driverAssetsPath}}/images/small.jpg",
+        "large": "{{driverAssetsPath}}/images/large.jpg",
+        "xlarge": "{{driverAssetsPath}}/images/xlarge.jpg"
+    },
+    "capabilities": [
+        "readable_boolean.device_status",
+        "date.record",
+        "measure_battery",
+        "measure_percentage.soh",
+        "measure_voltage.battery1",
+        "measure_current.battery1",
+        "measure_power",
+        "measure_temperature.battery1",
+        "status_text.run_mode",
+        "serial",
+        "meter_power.total_battery_charge",
+        "meter_power.total_battery_discharge",
+        "meter_power.daily_battery_charge",
+        "meter_power.daily_battery_discharge",
+        "measure_voltage.cell_01",
+        "measure_voltage.cell_02",
+        "measure_voltage.cell_03",
+        "measure_voltage.cell_04",
+        "measure_voltage.cell_05",
+        "measure_voltage.cell_06",
+        "measure_voltage.cell_07",
+        "measure_voltage.cell_08",
+        "measure_voltage.cell_09",
+        "measure_voltage.cell_10",
+        "measure_voltage.cell_11",
+        "measure_voltage.cell_12",
+        "measure_voltage.cell_13",
+        "measure_voltage.cell_14",
+        "measure_voltage.cell_15",
+        "measure_voltage.cell_16",
+        "measure_voltage.cell_min",
+        "measure_voltage.cell_max",
+        "measure_voltage.cell_delta",
+        "measure_temperature.cell_1",
+        "measure_temperature.cell_2",
+        "measure_temperature.cell_3"
+    ],
+    "capabilitiesOptions": {
+        "date.record": {
+            "title": {
+                "en": "Last status update",
+                "nl": "Laatste status update"
+            }
+        },
+        "readable_boolean.device_status": {
+            "title": {
+                "en": "Device online",
+                "nl": "Apparaat online"
+            }
+        },
+        "measure_percentage.soh": {
+            "title": {
+                "en": "State of health",
+                "nl": "Gezondheid (SOH)"
+            }
+        },
+        "measure_voltage.battery1": {
+            "title": {
+                "en": "Battery voltage",
+                "nl": "Batterijspanning"
+            },
+            "decimals": 2
+        },
+        "measure_current.battery1": {
+            "title": {
+                "en": "Battery current",
+                "nl": "Batterijstroom"
+            },
+            "decimals": 2
+        },
+        "measure_temperature.battery1": {
+            "title": {
+                "en": "Battery temperature",
+                "nl": "Batterijtemperatuur"
+            }
+        },
+        "status_text.run_mode": {
+            "title": {
+                "en": "Run mode",
+                "nl": "Bedrijfsmodus"
+            }
+        },
+        "serial": {
+            "title": {
+                "en": "Serial number",
+                "nl": "Serienummer"
+            }
+        },
+        "meter_power.total_battery_charge": {
+            "title": {
+                "en": "Total battery charge",
+                "nl": "Totaal batterij opladen"
+            }
+        },
+        "meter_power.total_battery_discharge": {
+            "title": {
+                "en": "Total battery discharge",
+                "nl": "Totaal batterij ontladen"
+            }
+        },
+        "meter_power.daily_battery_charge": {
+            "title": {
+                "en": "Daily battery charge",
+                "nl": "Dagelijks batterij opladen"
+            }
+        },
+        "meter_power.daily_battery_discharge": {
+            "title": {
+                "en": "Daily battery discharge",
+                "nl": "Dagelijks batterij ontladen"
+            }
+        },
+        "measure_voltage.cell_01": {
+            "title": {
+                "en": "Cell 01 voltage",
+                "nl": "Cel 01 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_02": {
+            "title": {
+                "en": "Cell 02 voltage",
+                "nl": "Cel 02 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_03": {
+            "title": {
+                "en": "Cell 03 voltage",
+                "nl": "Cel 03 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_04": {
+            "title": {
+                "en": "Cell 04 voltage",
+                "nl": "Cel 04 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_05": {
+            "title": {
+                "en": "Cell 05 voltage",
+                "nl": "Cel 05 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_06": {
+            "title": {
+                "en": "Cell 06 voltage",
+                "nl": "Cel 06 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_07": {
+            "title": {
+                "en": "Cell 07 voltage",
+                "nl": "Cel 07 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_08": {
+            "title": {
+                "en": "Cell 08 voltage",
+                "nl": "Cel 08 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_09": {
+            "title": {
+                "en": "Cell 09 voltage",
+                "nl": "Cel 09 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_10": {
+            "title": {
+                "en": "Cell 10 voltage",
+                "nl": "Cel 10 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_11": {
+            "title": {
+                "en": "Cell 11 voltage",
+                "nl": "Cel 11 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_12": {
+            "title": {
+                "en": "Cell 12 voltage",
+                "nl": "Cel 12 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_13": {
+            "title": {
+                "en": "Cell 13 voltage",
+                "nl": "Cel 13 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_14": {
+            "title": {
+                "en": "Cell 14 voltage",
+                "nl": "Cel 14 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_15": {
+            "title": {
+                "en": "Cell 15 voltage",
+                "nl": "Cel 15 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_16": {
+            "title": {
+                "en": "Cell 16 voltage",
+                "nl": "Cel 16 spanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_min": {
+            "title": {
+                "en": "Lowest cell voltage",
+                "nl": "Laagste celspanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_max": {
+            "title": {
+                "en": "Highest cell voltage",
+                "nl": "Hoogste celspanning"
+            },
+            "decimals": 3
+        },
+        "measure_voltage.cell_delta": {
+            "title": {
+                "en": "Cell voltage delta",
+                "nl": "Celspanning delta"
+            },
+            "decimals": 3
+        },
+        "measure_temperature.cell_1": {
+            "title": {
+                "en": "Cell 1 temperature",
+                "nl": "Cel 1 temperatuur"
+            }
+        },
+        "measure_temperature.cell_2": {
+            "title": {
+                "en": "Cell 2 temperature",
+                "nl": "Cel 2 temperatuur"
+            }
+        },
+        "measure_temperature.cell_3": {
+            "title": {
+                "en": "Cell 3 temperature",
+                "nl": "Cel 3 temperatuur"
+            }
+        },
+        "measure_voltage.stack": {
+            "title": {
+                "en": "Stack voltage",
+                "nl": "Stack spanning"
+            },
+            "decimals": 2
+        },
+        "measure_current.stack": {
+            "title": {
+                "en": "Stack current",
+                "nl": "Stack stroom"
+            },
+            "decimals": 2
+        },
+        "measure_power.stack": {
+            "title": {
+                "en": "Stack power",
+                "nl": "Stack vermogen"
+            }
+        }
+    },
+    "pair": [
+        {
+            "id": "login"
+        },
+        {
+            "id": "list_devices",
+            "template": "list_devices",
+            "navigation": {
+                "next": "add_devices"
+            }
+        },
+        {
+            "id": "add_devices",
+            "template": "add_devices"
+        }
+    ]
+}
