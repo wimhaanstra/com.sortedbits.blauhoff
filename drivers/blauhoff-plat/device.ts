@@ -171,12 +171,21 @@ export class PlatDevice extends Homey.Device {
 
             const { batteryId, isHost } = this.getData();
             const monitor = await this.client.monitor(String(batteryId));
+            let listItem;
+            try {
+                listItem = await this.client.findBattery(String(batteryId));
+            } catch (error) {
+                this.derror('PLAT battery list failed', error instanceof Error ? error.message : error);
+            }
             const token = this.client.getToken();
             if (token && token !== this.getStoreValue('token')) {
                 await this.setStoreValue('token', token);
             }
 
-            const capabilities = mapMonitorToCapabilities(monitor, Boolean(isHost));
+            const capabilities = mapMonitorToCapabilities(monitor, {
+                isHost: Boolean(isHost),
+                listItem,
+            });
             await this.applyCapabilities(capabilities);
             await this.markOnline(true);
         } catch (error) {

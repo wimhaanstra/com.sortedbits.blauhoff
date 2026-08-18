@@ -1724,6 +1724,9 @@
         "measure_power",
         "measure_temperature.battery1",
         "status_text.run_mode",
+        "status_text.host",
+        "readable_boolean.host",
+        "status_text.ssid",
         "serial",
         "meter_power.total_battery_charge",
         "meter_power.total_battery_discharge",
@@ -1795,6 +1798,24 @@
           "title": {
             "en": "Run mode",
             "nl": "Bedrijfsmodus"
+          }
+        },
+        "status_text.host": {
+          "title": {
+            "en": "Host",
+            "nl": "Host"
+          }
+        },
+        "readable_boolean.host": {
+          "title": {
+            "en": "Host pack",
+            "nl": "Host-pack"
+          }
+        },
+        "status_text.ssid": {
+          "title": {
+            "en": "Wi-Fi SSID",
+            "nl": "Wi-Fi SSID"
           }
         },
         "serial": {

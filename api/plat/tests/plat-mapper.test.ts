@@ -9,12 +9,12 @@ import {
     platDeviceName,
 } from '../plat-mapper';
 
-const slaveFixture = JSON.parse(readFileSync(join(__dirname, 'fixtures/battery-monitor-slave.json'), 'utf8')) as PlatMonitorPayload;
+const nonHostFixture = JSON.parse(readFileSync(join(__dirname, 'fixtures/battery-monitor-non-host.json'), 'utf8')) as PlatMonitorPayload;
 const hostFixture = JSON.parse(readFileSync(join(__dirname, 'fixtures/battery-monitor-host.json'), 'utf8')) as PlatMonitorPayload;
 
 describe('plat-mapper', () => {
-    test('maps a live slave monitor payload', () => {
-        const capabilities = mapMonitorToCapabilities(slaveFixture);
+    test('maps a live non-host monitor payload', () => {
+        const capabilities = mapMonitorToCapabilities(nonHostFixture);
 
         expect(capabilities.measure_battery).toBe(68);
         expect(capabilities['measure_percentage.soh']).toBe(95);
@@ -24,6 +24,9 @@ describe('plat-mapper', () => {
         expect(capabilities['measure_temperature.battery1']).toBe(21);
         expect(capabilities['status_text.run_mode']).toBe('discharge');
         expect(capabilities.serial).toBe('1417907SLKOPG020040');
+        expect(capabilities['readable_boolean.host']).toBe(false);
+        expect(capabilities['status_text.host']).toBe('No');
+        expect(capabilities['status_text.ssid']).toBeUndefined();
         expect(capabilities['meter_power.total_battery_charge']).toBe(123.45);
         expect(capabilities['meter_power.total_battery_discharge']).toBe(98.76);
         expect(capabilities['meter_power.daily_battery_charge']).toBe(1.23);
@@ -46,6 +49,8 @@ describe('plat-mapper', () => {
 
         expect(capabilities.measure_battery).toBe(67);
         expect(capabilities['status_text.run_mode']).toBe('Discharging');
+        expect(capabilities['readable_boolean.host']).toBe(true);
+        expect(capabilities['status_text.host']).toBe('Yes');
         expect(capabilities['measure_voltage.stack']).toBe(157.25);
         expect(capabilities['measure_current.stack']).toBe(-3.76);
         expect(capabilities['measure_power.stack']).toBe(-591);
@@ -79,6 +84,20 @@ describe('plat-mapper', () => {
                 enabled: true,
             },
         });
+    });
+
+    test('maps host role and Wi-Fi SSID from the battery list', () => {
+        const capabilities = mapMonitorToCapabilities(nonHostFixture, {
+            listItem: {
+                id: 44798,
+                is_host: 'No',
+                ap_ssid: 'energy',
+            },
+        });
+
+        expect(capabilities['readable_boolean.host']).toBe(false);
+        expect(capabilities['status_text.host']).toBe('No');
+        expect(capabilities['status_text.ssid']).toBe('energy');
     });
 
     test('uses the app name when it is not BLH', () => {

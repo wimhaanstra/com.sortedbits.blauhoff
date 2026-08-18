@@ -11,6 +11,9 @@ import { URL } from 'url';
 const DEFAULT_API_BASE = 'https://smartenergy.cfe-group.cn';
 const USER_AGENT = 'Mozilla/5.0 HomeyBlauHoff-PLAT';
 const REQUEST_TIMEOUT_MS = 15_000;
+const LIST_CACHE_MS = 60_000;
+
+const batteryListCache = new Map<string, { at: number; items: PlatBatteryListItem[] }>();
 
 export type PlatLogger = {
     log: (...args: any[]) => void;
@@ -43,6 +46,11 @@ export type PlatBatteryListItem = {
     status?: string;
     is_host?: string | boolean | number;
     soc?: string | number;
+    ssid?: string;
+    sta_ssid?: string;
+    wifi_ssid?: string;
+    wifi_name?: string;
+    ap_ssid?: string;
     [key: string]: unknown;
 };
 
@@ -253,6 +261,23 @@ export class PlatClient {
         } while (page <= lastPage);
 
         return batteries;
+    }
+
+    async findBattery(batteryId: string): Promise<PlatBatteryListItem | undefined> {
+        const items = await this.listBatteriesCached();
+        const wanted = String(batteryId);
+        return items.find((item) => batteryIdFromListItem(item) === wanted);
+    }
+
+    private async listBatteriesCached(): Promise<PlatBatteryListItem[]> {
+        const cached = batteryListCache.get(this.account);
+        if (cached && Date.now() - cached.at < LIST_CACHE_MS) {
+            return cached.items;
+        }
+
+        const items = await this.listBatteries();
+        batteryListCache.set(this.account, { at: Date.now(), items });
+        return items;
     }
 
     async monitor(batteryId: string): Promise<PlatMonitorPayload> {

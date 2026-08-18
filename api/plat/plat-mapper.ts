@@ -74,11 +74,31 @@ export function mapBatteryListItemToPairingDevice(
     };
 }
 
-export function mapMonitorToCapabilities(monitor: PlatMonitorPayload, isHost = false): HomeyCapabilityMap {
+export type PlatMapperContext = {
+    isHost?: boolean;
+    listItem?: PlatBatteryListItem;
+};
+
+export function packSsid(item?: PlatBatteryListItem): string | undefined {
+    if (!item) {
+        return undefined;
+    }
+
+    return firstString(item.ssid, item.sta_ssid, item.wifi_ssid, item.wifi_name, item.ap_ssid);
+}
+
+export function mapMonitorToCapabilities(
+    monitor: PlatMonitorPayload,
+    isHostOrContext: boolean | PlatMapperContext = false,
+): HomeyCapabilityMap {
+    const context: PlatMapperContext = typeof isHostOrContext === 'boolean'
+        ? { isHost: isHostOrContext }
+        : isHostOrContext;
     const detail = asRecord(monitor.battery_detail);
     const pack = asRecord(monitor.battery_data);
     const stack = asRecord(Array.isArray(monitor.battery_info) ? undefined : monitor.battery_info);
-    const host = isHost || isHostPack(detail.is_host);
+    const listItem = context.listItem;
+    const host = Boolean(context.isHost) || isHostPack(detail.is_host) || isHostPack(listItem?.is_host);
     const capabilities: HomeyCapabilityMap = {};
 
     const soc = parseNumber(pack.soc ?? stack.soc);
@@ -106,6 +126,14 @@ export function mapMonitorToCapabilities(monitor: PlatMonitorPayload, isHost = f
     const serial = detail.battery_number;
     if (serial !== undefined && serial !== null && String(serial).trim() !== '') {
         capabilities.serial = String(serial);
+    }
+
+    capabilities['readable_boolean.host'] = host;
+    capabilities['status_text.host'] = host ? 'Yes' : 'No';
+
+    const ssid = packSsid(listItem);
+    if (ssid) {
+        capabilities['status_text.ssid'] = ssid;
     }
 
     const runMode = host
