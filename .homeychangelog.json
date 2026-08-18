@@ -283,5 +283,8 @@
   },
   "3.3.0": {
     "en": "Add support for Smart Energy PLAT cloud battery readings"
+  },
+  "3.3.1": {
+    "en": "Add battery pairing help"
   }
 }
