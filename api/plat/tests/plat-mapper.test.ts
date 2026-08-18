@@ -24,6 +24,10 @@ describe('plat-mapper', () => {
         expect(capabilities['measure_temperature.battery1']).toBe(21);
         expect(capabilities['status_text.run_mode']).toBe('discharge');
         expect(capabilities.serial).toBe('1417907SLKOPG020040');
+        expect(capabilities['version.software']).toBe('V1.0');
+        expect(capabilities['version.hardware']).toBe('1');
+        expect(capabilities['status_text.address_code']).toBe('01');
+        expect(capabilities['status_text.bms_status']).toBe('0000');
         expect(capabilities['readable_boolean.host']).toBe(false);
         expect(capabilities['status_text.host']).toBe('No');
         expect(capabilities['status_text.ssid']).toBeUndefined();
@@ -51,6 +55,10 @@ describe('plat-mapper', () => {
         expect(capabilities['status_text.run_mode']).toBe('Discharging');
         expect(capabilities['readable_boolean.host']).toBe(true);
         expect(capabilities['status_text.host']).toBe('Yes');
+        expect(capabilities['status_text.address_code']).toBe('03');
+        expect(capabilities['status_text.bms_status']).toBe('0000');
+        expect(capabilities['version.software']).toBe('V1.0');
+        expect(capabilities['version.hardware']).toBe('1');
         expect(capabilities['measure_voltage.stack']).toBe(157.25);
         expect(capabilities['measure_current.stack']).toBe(-3.76);
         expect(capabilities['measure_power.stack']).toBe(-591);
@@ -92,12 +100,18 @@ describe('plat-mapper', () => {
                 id: 44798,
                 is_host: 'No',
                 ap_ssid: 'energy',
+                status: 'Online',
+                model: 'BLH-5100',
+                name: 'BLH',
             },
         });
 
         expect(capabilities['readable_boolean.host']).toBe(false);
         expect(capabilities['status_text.host']).toBe('No');
         expect(capabilities['status_text.ssid']).toBe('energy');
+        expect(capabilities['status_text.status']).toBe('Online');
+        expect(capabilities['status_text.model']).toBe('BLH-5100');
+        expect(capabilities['status_text.name']).toBe('BLH');
     });
 
     test('uses the app name when it is not BLH', () => {

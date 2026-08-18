@@ -31,6 +31,13 @@
         "status_text.host",
         "readable_boolean.host",
         "status_text.ssid",
+        "status_text.status",
+        "status_text.model",
+        "status_text.name",
+        "status_text.address_code",
+        "status_text.bms_status",
+        "version.software",
+        "version.hardware",
         "serial",
         "meter_power.total_battery_charge",
         "meter_power.total_battery_discharge",
@@ -120,6 +127,48 @@
             "title": {
                 "en": "Wi-Fi SSID",
                 "nl": "Wi-Fi SSID"
+            }
+        },
+        "status_text.status": {
+            "title": {
+                "en": "Status",
+                "nl": "Status"
+            }
+        },
+        "status_text.model": {
+            "title": {
+                "en": "Model",
+                "nl": "Model"
+            }
+        },
+        "status_text.name": {
+            "title": {
+                "en": "Name",
+                "nl": "Naam"
+            }
+        },
+        "status_text.address_code": {
+            "title": {
+                "en": "Address code",
+                "nl": "Adrescode"
+            }
+        },
+        "status_text.bms_status": {
+            "title": {
+                "en": "BMS status",
+                "nl": "BMS-status"
+            }
+        },
+        "version.software": {
+            "title": {
+                "en": "Software version",
+                "nl": "Softwareversie"
+            }
+        },
+        "version.hardware": {
+            "title": {
+                "en": "Hardware version",
+                "nl": "Hardwareversie"
             }
         },
         "serial": {

@@ -131,6 +131,14 @@ export function mapMonitorToCapabilities(
     capabilities['readable_boolean.host'] = host;
     capabilities['status_text.host'] = host ? 'Yes' : 'No';
 
+    setText(capabilities, 'status_text.status', listItem?.status);
+    setText(capabilities, 'status_text.model', listItem?.model, listItem?.equipment_name);
+    setText(capabilities, 'status_text.name', listItem?.name);
+    setText(capabilities, 'version.software', detail.software_version, listItem?.software_version);
+    setText(capabilities, 'version.hardware', detail.hardware_version, listItem?.hardware_version);
+    setText(capabilities, 'status_text.address_code', pack.address_code);
+    setText(capabilities, 'status_text.bms_status', pack.bms_status);
+
     const ssid = packSsid(listItem);
     if (ssid) {
         capabilities['status_text.ssid'] = ssid;
@@ -188,6 +196,13 @@ export function mapMonitorToCapabilities(
     }
 
     return capabilities;
+}
+
+function setText(capabilities: HomeyCapabilityMap, capabilityId: string, ...values: unknown[]): void {
+    const text = firstString(...values);
+    if (text) {
+        capabilities[capabilityId] = text;
+    }
 }
 
 function setMeter(capabilities: HomeyCapabilityMap, capabilityId: string, value: unknown): void {

@@ -44,6 +44,10 @@ export type PlatBatteryListItem = {
     battery_number?: string;
     name?: string;
     status?: string;
+    model?: string;
+    equipment_name?: string;
+    software_version?: string | number;
+    hardware_version?: string | number;
     is_host?: string | boolean | number;
     soc?: string | number;
     ssid?: string;

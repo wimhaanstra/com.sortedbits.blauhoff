@@ -2,15 +2,18 @@
   "battery_detail": {
     "battery_number": "1417907SLKOPG020113",
     "software_version": "V1.0",
+    "hardware_version": "1",
     "is_host": "Yes"
   },
   "battery_data": {
     "ts": "2026-08-18 06:08:09",
+    "address_code": "03",
     "total_voltage": "52.30",
     "total_current": "-3.71",
     "soc": "67",
     "soh": "95",
     "charge_discharge_status": "discharge",
+    "bms_status": "0000",
     "single_voltage": {
       "voltage": [3270, 3270, 3270, 3271, 3271, 3271, 3271, 3271, 3271, 3272, 3272, 3272, 3276, 3276, 3277, 3276]
     },
