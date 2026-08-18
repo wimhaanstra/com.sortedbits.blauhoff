@@ -6,5 +6,21 @@
         "account": "Account",
         "password": "Wachtwoord",
         "submit": "Verbinden"
+    },
+    "pair_prepare": {
+        "title": "Zet batterijen eerst klaar in Smart Energy PLAT",
+        "intro": "Homey leest packs van je Smart Energy PLAT-cloudaccount. Download de app, voeg elke batterij toe door de barcode te scannen, verbind hem met Wi-Fi, en ga daarna hier verder.",
+        "step_app": "Download de Smart Energy PLAT-app en maak een account of log in.",
+        "step_scan": "Voeg elke batterij in de app toe door de barcode op het pack te scannen.",
+        "step_wifi": "Verbind elke batterij met Wi-Fi via de stappen hieronder.",
+        "step_homey": "Als de packs online zijn in de app, kun je ze in Homey toevoegen.",
+        "wifi_title": "Een batterij met Wi-Fi koppelen",
+        "wifi_step_1": "Nadat je de batterij aan de app hebt toegevoegd",
+        "wifi_step_2": "Tik op Configure Wi-Fi bij de batterij die je wilt verbinden",
+        "wifi_step_3": "Houd de resetknop ongeveer 3 seconden ingedrukt, tot het statuslampje gaat knipperen",
+        "wifi_step_4": "Volg de app om de batterij met Wi-Fi te verbinden",
+        "app_store": "App Store",
+        "play_store": "Google Play",
+        "submit": "Doorgaan"
     }
 }

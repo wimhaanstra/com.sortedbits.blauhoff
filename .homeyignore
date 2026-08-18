@@ -1,0 +1,4 @@
+# Research probe copy and vendor dumps must not ship in the Homey app
+_plat
+vendor
+.env

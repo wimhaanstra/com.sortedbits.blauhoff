@@ -2022,6 +2022,9 @@
       },
       "pair": [
         {
+          "id": "prepare"
+        },
+        {
           "id": "login"
         },
         {

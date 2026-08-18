@@ -7,6 +7,22 @@
         "password": "Password",
         "submit": "Connect"
     },
+    "pair_prepare": {
+        "title": "Set up batteries in Smart Energy PLAT first",
+        "intro": "Homey reads packs from your Smart Energy PLAT cloud account. Download the app, add each battery by scanning the barcode, connect it to Wi-Fi, and then continue here.",
+        "step_app": "Download the Smart Energy PLAT app and create or sign in to your account.",
+        "step_scan": "Add each battery in the app by scanning the barcode on the pack.",
+        "step_wifi": "Connect each battery to Wi-Fi using the steps below.",
+        "step_homey": "When the packs are online in the app, you can add them to Homey.",
+        "wifi_title": "Pairing a battery to Wi-Fi",
+        "wifi_step_1": "After adding the battery to the app",
+        "wifi_step_2": "Tap Configure Wi-Fi for the battery you want to connect",
+        "wifi_step_3": "Hold down the reset button for about 3 seconds, until the status light starts blinking",
+        "wifi_step_4": "Follow the app to connect the battery to Wi-Fi",
+        "app_store": "App Store",
+        "play_store": "Google Play",
+        "submit": "Continue"
+    },
     "modbus_pair": {
         "title": "Connect to Modbus",
         "intro": "Using Modbus to connect to your device requires you to have Modbus TCP enabled for your device and a ethernet cable connected.",
