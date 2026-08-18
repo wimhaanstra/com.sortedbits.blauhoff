@@ -38,6 +38,8 @@ export class PlatDevice extends Homey.Device {
         await this.setClass('battery');
         await this.setEnergy({
             homeBattery: true,
+            meterPowerImportedCapability: 'meter_power.total_battery_charge',
+            meterPowerExportedCapability: 'meter_power.total_battery_discharge',
         });
 
         await addCapabilityIfNotExists(this, 'readable_boolean.device_status');

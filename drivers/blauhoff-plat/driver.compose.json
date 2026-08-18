@@ -5,7 +5,9 @@
     },
     "class": "battery",
     "energy": {
-        "homeBattery": true
+        "homeBattery": true,
+        "meterPowerImportedCapability": "meter_power.total_battery_charge",
+        "meterPowerExportedCapability": "meter_power.total_battery_discharge"
     },
     "platforms": [
         "local"
