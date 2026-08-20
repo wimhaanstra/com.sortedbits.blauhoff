@@ -1,12 +1,14 @@
 # BlauHoff
 
-Adds support for BlauHoff Inverter and Battery devices.
+Adds Homey support for BlauHoff hybrid inverters and BlauHoff BLH-5100 home batteries. Packs that are already linked to CFE Group through the Smart Energy PLAT cloud can be added with that same account.
 
 ![Workflow](https://github.com/sorted-bits/com.sortedbits.blauhoff/actions/workflows/node.js.yml/badge.svg)
 
 ## Supported devices
 
-The following devices are supported through both a Modbus connection or using a Solarman Wifi dongle.
+### Hybrid inverters
+
+The following inverters are supported through both a Modbus connection or using a Solarman Wifi dongle.
 
 1. [Deye Sun \*K SG01HP3 EU AM2 Series](repositories/device-repository/devices/deye/sun-xk-sg01hp3-eu-am2/README.md)
 2. [Afore AF XK-TH Three Phase Hybrid Inverter](repositories/device-repository/devices/afore/af-xk-th-three-phase-hybrid/README.md)
@@ -15,6 +17,12 @@ Currently the app also supports two Growatt inverters **using Modbus**.
 
 1. [Growatt 1PH MIC TL-X series](repositories/device-repository/devices/growatt/growatt-tl/README.md)
 2. [Growatt 3PH MOD TL3-X series](repositories/device-repository/devices/growatt/growatt-tl3/README.md)
+
+### Home batteries (CFE Group / Smart Energy PLAT)
+
+BlauHoff **BLH-5100** home batteries are supported through the CFE Group **Smart Energy PLAT** cloud. If a pack is already added in the Smart Energy PLAT app (barcode scan and Wi-Fi setup), Homey can list it after you sign in with that same account.
+
+Other batteries on the same CFE Group Smart Energy PLAT platform can be added the same way, so you do not need a separate local Modbus or Solarman connection for these packs.
 
 ### Solarman
 
@@ -32,7 +40,7 @@ Because there is no way to discover either a Modbus adapter OR an Solarman dongl
 
 ### Installation
 
-Currently only the test version of the app is up-to-date for usage with both Modbus or Solarman.
+Currently only the test version of the app is up-to-date for usage with Modbus, Solarman, and Smart Energy PLAT batteries.
 
 1. Visit [the installation page here](https://homey.app/a/com.sortedbits.blauhoff/test/).
 2. Click the big green **`Install App`** button that appears on the page.
@@ -43,7 +51,9 @@ Currently only the test version of the app is up-to-date for usage with both Mod
 
 #### In Homey
 
-After the app installed, there are a couple more steps you need to complete to add you BlauHoff device to Homey:
+After the app installed, there are a couple more steps you need to complete to add your BlauHoff device to Homey.
+
+#### Hybrid inverter
 
 1. Press the **`+`** button to add a new device.
 2. From the list that is shown, choose **`BlauHoff`**.
@@ -59,6 +69,17 @@ After the app installed, there are a couple more steps you need to complete to a
     4. If you have chosen to use a Solarman connection, you need to fill in the Solarman dongle serial number.
 9. Click **`Connect`**.
 10. If your device is succesfully found, you can select it in the next screen and click **`Continue`**.
+
+#### Smart Energy PLAT battery
+
+Use this path for a BlauHoff BLH-5100, or for another battery that is already connected to CFE Group in the Smart Energy PLAT app.
+
+1. Press the **`+`** button to add a new device.
+2. From the list that is shown, choose **`BlauHoff`**.
+3. Choose **`Smart Energy PLAT battery`**.
+4. Set the pack up in the Smart Energy PLAT app first if you have not already (account, barcode, Wi-Fi).
+5. Sign in with the same Smart Energy PLAT account.
+6. Select one or more battery packs from the list and add them to Homey.
 
 ### Auto update
 

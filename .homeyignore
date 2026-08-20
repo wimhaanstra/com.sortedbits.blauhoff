@@ -2,3 +2,4 @@
 _plat
 vendor
 .env
+**/assets/_preview*.png
