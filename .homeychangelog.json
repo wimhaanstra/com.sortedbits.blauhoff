@@ -292,5 +292,8 @@
   },
   "3.3.3": {
     "en": "Included warning fields"
+  },
+  "3.3.4": {
+    "en": "Added support for the Smart Energy PLAT platform, so each separate battery can be added to Homey a well, not just a complete stack. This gives access to properties of each battery, as cell voltage, software versions, etc."
   }
 }
